@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-init
+  namespace: resume-app
+spec:
+  template:
+    spec:
+      containers:
+      - name: mysql-init
+        image: mysql:8.0
+        command:
+        - sh
+        - -c
+        - "mysql -h mysql -u root -prootpassword online_resume_system < /sql/init.sql"
+        volumeMounts:
+        - name: sql
+          mountPath: /sql
+      restartPolicy: Never
+      volumes:
+      - name: sql
+        configMap:
+          name: db-init-sql
+  backoffLimit: 4

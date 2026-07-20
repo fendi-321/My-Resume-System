@@ -1,0 +1,11 @@
+.git
+.gitignore
+README.md
+ec2-cv-app-architecture.png
+99db1a96-f8b0-423f-a9c6-840091947223.png
+database.sql
+update_my_cv.sql
+Dockerfile
+.dockerignore
+k8s
+deploy.sh
