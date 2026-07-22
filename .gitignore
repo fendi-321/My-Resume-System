@@ -7,4 +7,7 @@
 *.txt
 nul
 
-Project Resources
+Project Resources.terraform/
+*.tfstate
+*.tfstate.backup
+*.lock.hcl

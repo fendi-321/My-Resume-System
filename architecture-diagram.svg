@@ -1,0 +1,149 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#374151"/>
+    </marker>
+    <marker id="arrowDashed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0F9FF"/>
+      <stop offset="100%" stop-color="#E0F2FE"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1200" height="900" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" font-size="26" font-weight="bold" fill="#1E293B">Online Resume System — Architecture (GKE Deployment)</text>
+
+  <!-- ===================== USER ===================== -->
+  <g>
+    <rect x="60" y="80" width="160" height="70" rx="12" fill="#FDE68A" stroke="#D97706" stroke-width="2"/>
+    <text x="140" y="110" text-anchor="middle" font-size="15" font-weight="bold" fill="#78350F">🧑‍💻 User</text>
+    <text x="140" y="132" text-anchor="middle" font-size="12" fill="#78350F">Browser Request</text>
+  </g>
+
+  <!-- ===================== CLOUDFLARE ===================== -->
+  <g>
+    <rect x="60" y="200" width="260" height="110" rx="14" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="6,4"/>
+    <text x="190" y="225" text-anchor="middle" font-size="15" font-weight="bold" fill="#92400E">☁️ Cloudflare (CDN / SSL)</text>
+    <rect x="80" y="240" width="220" height="50" rx="8" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5"/>
+    <text x="190" y="262" text-anchor="middle" font-size="12.5" fill="#92400E">https://www.maffindi.com</text>
+    <text x="190" y="278" text-anchor="middle" font-size="11.5" fill="#92400E">SSL: Full (Strict)</text>
+  </g>
+
+  <!-- ===================== GKE CLUSTER ===================== -->
+  <g>
+    <rect x="360" y="70" width="780" height="770" rx="16" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2.5" stroke-dasharray="8,4"/>
+    <text x="750" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#1D4ED8">☁️ Google Cloud - GKE Cluster</text>
+
+    <!-- Namespace -->
+    <rect x="385" y="115" width="730" height="700" rx="14" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+    <text x="750" y="140" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#1E3A8A">📦 Namespace: resume-app</text>
+
+    <!-- LoadBalancer -->
+    <rect x="580" y="160" width="340" height="60" rx="10" fill="#C7D2FE" stroke="#4F46E5" stroke-width="2"/>
+    <text x="750" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="#312E81">🔀 Service: resume-app (LoadBalancer)</text>
+    <text x="750" y="203" text-anchor="middle" font-size="12" fill="#312E81">Port 80 → 80  |  Port 443 → 443</text>
+
+    <!-- App Pod -->
+    <rect x="420" y="260" width="300" height="140" rx="12" fill="#D1FAE5" stroke="#059669" stroke-width="2.5"/>
+    <text x="570" y="285" text-anchor="middle" font-size="14" font-weight="bold" fill="#065F46">🟢 Pod: resume-app</text>
+    <rect x="440" y="300" width="260" height="80" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="570" y="323" text-anchor="middle" font-size="12.5" fill="#065F46">🐘 Apache + mod_ssl</text>
+    <text x="570" y="340" text-anchor="middle" font-size="12.5" fill="#065F46">PHP 8.2 + PDO MySQL</text>
+    <text x="570" y="360" text-anchor="middle" font-size="11" fill="#065F46">Image: Artifact Registry</text>
+    <text x="570" y="374" text-anchor="middle" font-size="10.5" fill="#047857">resume-app:latest</text>
+
+    <!-- MySQL Pod -->
+    <rect x="780" y="260" width="300" height="140" rx="12" fill="#D1FAE5" stroke="#059669" stroke-width="2.5"/>
+    <text x="930" y="285" text-anchor="middle" font-size="14" font-weight="bold" fill="#065F46">🟢 Pod: mysql</text>
+    <rect x="800" y="300" width="260" height="80" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5"/>
+    <text x="930" y="330" text-anchor="middle" font-size="13" fill="#065F46">🗄️ MySQL 8.0</text>
+    <text x="930" y="350" text-anchor="middle" font-size="11" fill="#065F46">DB: online_resume_system</text>
+    <text x="930" y="366" text-anchor="middle" font-size="10.5" fill="#047857">User: resume_user</text>
+
+    <!-- mysql ClusterIP Service -->
+    <rect x="830" y="430" width="200" height="45" rx="8" fill="#FBCFE8" stroke="#DB2777" stroke-width="2"/>
+    <text x="930" y="453" text-anchor="middle" font-size="12" font-weight="bold" fill="#9D174D">📦 Service: mysql</text>
+    <text x="930" y="467" text-anchor="middle" font-size="10.5" fill="#9D174D">ClusterIP · 3306</text>
+
+    <!-- ConfigMap -->
+    <rect x="420" y="440" width="240" height="80" rx="10" fill="#FEF9C3" stroke="#CA8A04" stroke-width="2"/>
+    <text x="540" y="463" text-anchor="middle" font-size="13" font-weight="bold" fill="#713F12">⚙️ ConfigMap: app-config</text>
+    <text x="540" y="480" text-anchor="middle" font-size="10.5" fill="#713F12">APP_URL, DB_HOST=mysql</text>
+    <text x="540" y="494" text-anchor="middle" font-size="10.5" fill="#713F12">DB_NAME=online_resume_system</text>
+
+    <!-- DB Init Job -->
+    <rect x="695" y="440" width="220" height="80" rx="10" fill="#E0E7FF" stroke="#4338CA" stroke-width="2"/>
+    <text x="805" y="465" text-anchor="middle" font-size="13" font-weight="bold" fill="#312E81">✅ Job: db-init</text>
+    <text x="805" y="483" text-anchor="middle" font-size="11" fill="#312E81">(completed)</text>
+    <text x="805" y="498" text-anchor="middle" font-size="10" fill="#312E81">Runs init.sql via ConfigMap</text>
+
+    <!-- PVCs -->
+    <rect x="420" y="545" width="230" height="65" rx="10" fill="#FCE7F3" stroke="#BE185D" stroke-width="2"/>
+    <text x="535" y="568" text-anchor="middle" font-size="13" font-weight="bold" fill="#831843">💾 PVC: app-uploads</text>
+    <text x="535" y="585" text-anchor="middle" font-size="11" fill="#831843">RWO · 100Mi</text>
+    <text x="535" y="600" text-anchor="middle" font-size="10" fill="#831843">/var/www/html/assets/images</text>
+
+    <rect x="780" y="545" width="230" height="65" rx="10" fill="#FCE7F3" stroke="#BE185D" stroke-width="2"/>
+    <text x="895" y="568" text-anchor="middle" font-size="13" font-weight="bold" fill="#831843">💾 PVC: mysql-data</text>
+    <text x="895" y="585" text-anchor="middle" font-size="11" fill="#831843">RWO · 1Gi</text>
+    <text x="895" y="600" text-anchor="middle" font-size="10" fill="#831843">/var/lib/mysql</text>
+
+    <!-- Artifact Registry -->
+    <rect x="420" y="650" width="590" height="55" rx="10" fill="#E5E7EB" stroke="#4B5563" stroke-width="2"/>
+    <text x="715" y="682" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1F2937">📀 Artifact Registry — asia-southeast1-docker.pkg.dev/maffindi/resume-app</text>
+
+    <!-- CI/CD note -->
+    <rect x="420" y="725" width="590" height="55" rx="10" fill="#F3F4F6" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="715" y="750" text-anchor="middle" font-size="12" fill="#374151">🐳 Dockerfile: php:8.2-apache + mod_rewrite + PDO MySQL</text>
+    <text x="715" y="768" text-anchor="middle" font-size="11" fill="#374151">Built &amp; pushed to Artifact Registry → pulled by resume-app Deployment</text>
+  </g>
+
+  <!-- ===================== ARROWS ===================== -->
+  <!-- User -> Cloudflare -->
+  <path d="M140,150 L140,200" stroke="#374151" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- Cloudflare -> LoadBalancer -->
+  <path d="M320,255 L580,190" stroke="#374151" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+  <text x="440" y="215" font-size="11" fill="#374151">DNS A Record / HTTPS</text>
+
+  <!-- LB -> App Pod -->
+  <path d="M700,220 L590,260" stroke="#374151" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- App Pod -> MySQL Service -->
+  <path d="M720,340 L830,420" stroke="#374151" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+  <text x="735" y="405" font-size="11" fill="#374151">PDO :3306</text>
+
+  <!-- MySQL Service -> MySQL Pod -->
+  <path d="M930,430 L930,400" stroke="#374151" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
+
+  <!-- ConfigMap -.-> App Pod -->
+  <path d="M540,440 L560,400" stroke="#9CA3AF" stroke-width="1.8" fill="none" stroke-dasharray="5,4" marker-end="url(#arrowDashed)"/>
+
+  <!-- Job -.-> MySQL Service -->
+  <path d="M850,440 L900,475" stroke="#9CA3AF" stroke-width="1.8" fill="none" stroke-dasharray="5,4" marker-end="url(#arrowDashed)"/>
+
+  <!-- PVC app-uploads -.-> App Pod -->
+  <path d="M550,545 L560,400" stroke="#9CA3AF" stroke-width="1.8" fill="none" stroke-dasharray="5,4" marker-end="url(#arrowDashed)"/>
+
+  <!-- PVC mysql-data -.-> MySQL Pod -->
+  <path d="M910,545 L930,400" stroke="#9CA3AF" stroke-width="1.8" fill="none" stroke-dasharray="5,4" marker-end="url(#arrowDashed)"/>
+
+  <!-- Legend -->
+  <g>
+    <rect x="60" y="740" width="260" height="100" rx="10" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5"/>
+    <text x="80" y="762" font-size="12.5" font-weight="bold" fill="#111827">Legend</text>
+    <line x1="80" y1="778" x2="115" y2="778" stroke="#374151" stroke-width="2.2" marker-end="url(#arrow)"/>
+    <text x="122" y="782" font-size="11" fill="#111827">Network / data traffic</text>
+    <line x1="80" y1="798" x2="115" y2="798" stroke="#9CA3AF" stroke-width="1.8" stroke-dasharray="5,4" marker-end="url(#arrowDashed)"/>
+    <text x="122" y="802" font-size="11" fill="#111827">Mount / config reference</text>
+    <text x="80" y="822" font-size="11" fill="#111827">Domain: www.maffindi.com</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="600" y="880" text-anchor="middle" font-size="11.5" fill="#64748B">PHP 8.2 (Apache) · MySQL 8.0 · Kubernetes (GKE) · Cloudflare CDN/SSL · Artifact Registry</text>
+</svg>
