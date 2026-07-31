@@ -1,7 +1,7 @@
 FROM php:8.2-apache
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+# Enable Apache mod_rewrite and mod_ssl
+RUN a2enmod rewrite ssl headers
 
 # Install MySQL PDO extension
 RUN docker-php-ext-install pdo pdo_mysql
@@ -20,7 +20,11 @@ RUN mkdir -p assets/images && \
 # Set ServerName to suppress Apache warnings
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Expose port 80
-EXPOSE 80
+# Add SSL virtual host configuration and enable it
+COPY ssl-vhost.conf /etc/apache2/sites-available/default-ssl.conf
+RUN a2ensite default-ssl
+
+# Expose port 80 and 443
+EXPOSE 80 443
 
 CMD ["apache2-foreground"]

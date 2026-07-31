@@ -8,6 +8,13 @@
 nul
 
 Project Resources.terraform/
+.terraform/
 *.tfstate
 *.tfstate.backup
 *.lock.hcl
+
+# SSL certificates / private keys - NEVER commit
+*.pem
+*.key
+origin-cert.pem
+origin-key.pem

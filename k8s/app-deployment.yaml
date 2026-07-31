@@ -13,6 +13,17 @@ spec:
       labels:
         app: resume-app
     spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values: ["mysql"]
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: resume-app
         image: asia-southeast1-docker.pkg.dev/maffindi/resume-app/resume-app:latest
@@ -20,12 +31,17 @@ spec:
         ports:
         - containerPort: 80
           name: http
+        - containerPort: 443
+          name: https
         envFrom:
         - configMapRef:
             name: app-config
         volumeMounts:
         - name: uploads
           mountPath: /var/www/html/assets/images
+        - name: cloudflare-cert
+          mountPath: /etc/ssl/cloudflare
+          readOnly: true
         resources:
           requests:
             memory: "128Mi"
@@ -37,3 +53,6 @@ spec:
       - name: uploads
         persistentVolumeClaim:
           claimName: app-uploads
+      - name: cloudflare-cert
+        secret:
+          secretName: cloudflare-origin-cert

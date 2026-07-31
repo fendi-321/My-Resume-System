@@ -14,6 +14,17 @@ spec:
       labels:
         app: mysql
     spec:
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values: ["resume-app"]
+              topologyKey: kubernetes.io/hostname
       containers:
       - name: mysql
         image: mysql:8.0
